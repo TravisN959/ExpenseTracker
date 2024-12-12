@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Users from './components/UserTable';
 import Expense from './components/ExpenseTable';
 import Category from './components/CategoryTable';
