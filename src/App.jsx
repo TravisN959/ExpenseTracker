@@ -20,12 +20,6 @@ function App() {
   const incrementUserCount = () => setUserCount((counter)=>counter + 1);
   const incrementExpenseCount = () => setExpenseCount((counter)=>counter + 1);
 
-  useEffect( () => {
-    console.log(users);
-    console.log(expenses);
-    console.log(categoryTotals);
-  }, [users, expenses]);
-
   const addUser = (newUser) => {
     incrementUserCount();
     const newEntry = {
