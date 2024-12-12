@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../style/forms.css';
 
 export default function CreateUser({onSubmit}){
     const [form, setForm] = useState({
@@ -24,15 +25,15 @@ export default function CreateUser({onSubmit}){
 
     return (<div>
         <form onSubmit={handleSubmit}>
-            <label>
+            <label className='inputLabel'>
                 First Name
-                <input name='first' type='text' value={form.first} onChange={handleChange} required/>
+                <input className='inputBox' name='first' type='text' value={form.first} onChange={handleChange} required/>
             </label>
-            <label>
+            <label className='inputLabel'>
                 Last Name
-                <input name='last' type='text' value={form.last} onChange={handleChange} required/>
+                <input className='inputBox' name='last' type='text' value={form.last} onChange={handleChange} required/>
             </label>
-            <button type='submit'>Create User</button>
+            <button type='submit'>Create</button>
         </form>
         
     </div>);

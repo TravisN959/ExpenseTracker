@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../style/forms.css';
 
 export default function EditExpense({onSubmit, categories, users, expenses}){
     const expenseList = Object.values(expenses);
@@ -38,9 +39,9 @@ export default function EditExpense({onSubmit, categories, users, expenses}){
 
     return (<div>
         <form onSubmit={handleSubmit}>
-            <label>
+            <label className='inputLabel'>
                 Expense ID
-                <select name='id' type='text' value={form.id} onChange={handleChange} required>
+                <select className='inputBox' name='id' type='text' value={form.id} onChange={handleChange} required>
                     <option value={-1} disabled>Select Expense</option>
                     {
                         expenseList.map( (expense) => (
@@ -49,9 +50,9 @@ export default function EditExpense({onSubmit, categories, users, expenses}){
                     }
                 </select>
             </label>
-            <label>
+            <label className='inputLabel'>
                 Category
-                <select name='category' type='text' value={form.category} onChange={handleChange} required>
+                <select className='inputBox' name='category' type='text' value={form.category} onChange={handleChange} required>
                     <option value='' disabled>Select Category</option>
                     {
                         categories.map( (category, index) => (
@@ -60,9 +61,9 @@ export default function EditExpense({onSubmit, categories, users, expenses}){
                     }
                 </select>
             </label>
-            <label>
+            <label className='inputLabel'>
                 User
-                <select name='userId' type='text' value={form.userId} onChange={handleChange} required>
+                <select className='inputBox' name='userId' type='text' value={form.userId} onChange={handleChange} required>
                     <option value='' disabled>Select User</option>
                     {
                         userList.map( (user) => (
@@ -71,15 +72,15 @@ export default function EditExpense({onSubmit, categories, users, expenses}){
                     }
                 </select>
             </label>
-            <label>
+            <label className='inputLabel'>
                 Description
-                <input name='description' type='text' value={form.description} onChange={handleChange} required/>
+                <input className='inputBox' name='description' type='text' value={form.description} onChange={handleChange} required/>
             </label>
-            <label>
+            <label className='inputLabel'>
                 Cost
-                <input name='cost' type='number' value={form.cost} onChange={handleChange} required/>
+                <input className='inputBox' name='cost' type='number' value={form.cost} onChange={handleChange} required/>
             </label>
-            <button type='submit'>Edit Expense</button>
+            <button type='submit'>Edit</button>
         </form>
         
     </div>);

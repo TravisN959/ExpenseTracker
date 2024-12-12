@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../style/forms.css';
 
 export default function CreateExpense({onSubmit, categories, users}){
     const userList = Object.values(users);
@@ -35,9 +36,9 @@ export default function CreateExpense({onSubmit, categories, users}){
 
     return (<div>
         <form onSubmit={handleSubmit}>
-            <label>
+            <label className='inputLabel'>
                 Category
-                <select name='category' type='text' value={form.category} onChange={handleChange} required>
+                <select className='inputBox' name='category' type='text' value={form.category} onChange={handleChange} required>
                     <option value='' disabled>Select Category</option>
                     {
                         categories.map( (category, index) => (
@@ -46,9 +47,9 @@ export default function CreateExpense({onSubmit, categories, users}){
                     }
                 </select>
             </label>
-            <label>
+            <label className='inputLabel'>
                 User
-                <select name='userId' type='text' value={form.userId} onChange={handleChange} required>
+                <select className='inputBox' name='userId' type='text' value={form.userId} onChange={handleChange} required>
                     <option value='' disabled>Select User</option>
                     {
                         userList.map( (user) => (
@@ -57,15 +58,15 @@ export default function CreateExpense({onSubmit, categories, users}){
                     }
                 </select>
             </label>
-            <label>
+            <label className='inputLabel'>
                 Description
-                <input name='description' type='text' value={form.description} onChange={handleChange} required/>
+                <input className='inputBox' name='description' type='text' value={form.description} onChange={handleChange} required/>
             </label>
-            <label>
+            <label className='inputLabel'>
                 Cost
-                <input name='cost' type='number' value={form.cost} onChange={handleChange} required/>
+                <input className='inputBox' name='cost' type='number' value={form.cost} onChange={handleChange} required/>
             </label>
-            <button type='submit'>Create Expense</button>
+            <button type='submit'>Create</button>
         </form>
         
     </div>);

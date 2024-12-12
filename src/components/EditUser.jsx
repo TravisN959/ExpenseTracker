@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../style/forms.css';
 
 export default function EditUser({onSubmit, users}){
     const userList = Object.values(users);
@@ -27,9 +28,9 @@ export default function EditUser({onSubmit, users}){
 
     return (<div>
         <form onSubmit={handleSubmit}>
-            <label>
+            <label className='inputLabel'>
                 User ID
-                <select name='id' type='text' value={form.id || -1} onChange={handleChange} required>
+                <select className='inputBox' name='id' type='text' value={form.id || -1} onChange={handleChange} required>
                     <option value={-1} disabled>Select User</option>
                     {
                         userList.map( (user) => (
@@ -38,15 +39,15 @@ export default function EditUser({onSubmit, users}){
                     }
                 </select>
             </label>
-            <label>
+            <label className='inputLabel'>
                 First Name
-                <input name='first' type='text' value={form.first} onChange={handleChange} required/>
+                <input className='inputBox' name='first' type='text' value={form.first} onChange={handleChange} required/>
             </label>
-            <label>
+            <label className='inputLabel'>
                 Last Name
-                <input name='last' type='text' value={form.last} onChange={handleChange} required/>
+                <input className='inputBox' name='last' type='text' value={form.last} onChange={handleChange} required/>
             </label>
-            <button type='submit'>Edit User</button>
+            <button type='submit'>Edit</button>
         </form>
         
     </div>);

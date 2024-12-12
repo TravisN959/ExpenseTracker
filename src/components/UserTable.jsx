@@ -1,5 +1,5 @@
 import { FixedSizeList as List } from 'react-window';
-import '../style/userTable.css';
+import '../style/tables.css';
 
 export default function Users({data, onDelete}){
 

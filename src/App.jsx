@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Users from './components/UserTable';
 import Expense from './components/ExpenseTable';
 import Category from './components/CategoryTable';
@@ -19,7 +19,13 @@ function App() {
 
   const incrementUserCount = () => setUserCount((counter)=>counter + 1);
   const incrementExpenseCount = () => setExpenseCount((counter)=>counter + 1);
-  
+
+  useEffect( () => {
+    console.log(users);
+    console.log(expenses);
+    console.log(categoryTotals);
+  }, [users, expenses]);
+
   const addUser = (newUser) => {
     incrementUserCount();
     const newEntry = {
@@ -71,6 +77,7 @@ function App() {
     // Keep track of category totals and subtract at end
     const expenseList = users[userId]['expenses'];
     const catTotalsRemoval = Array(CATEGORIES.length).fill(0);
+    const oldCategoryTotals = [...categoryTotals];
     const newExpenses = {...expenses};
     expenseList.forEach( (expenseId) => {
       const expenseCat = expenses[expenseId].category;
@@ -82,7 +89,7 @@ function App() {
     setExpenses( () => newExpenses );
 
     //Add subtracted catTotals with current category totals to get new totals
-    const newCatTotals = catTotalsRemoval.map( (value, index) => value + categoryTotals[index]);
+    const newCatTotals = catTotalsRemoval.map( (value, index) => value + oldCategoryTotals[index]);
 
     // Update category table to have new category totals
     setCategoryTotals( () => newCatTotals );
@@ -104,7 +111,7 @@ function App() {
       ...prevUsers,
       [delExpenseUserId] : {...users[delExpenseUserId], 
                             total: parseInt(users[delExpenseUserId].total) - delExpenseCost,
-                            expenses: users[delExpenseUserId].expenses.filter( (val) => val !== expenseId),},
+                            expenses: users[delExpenseUserId].expenses.filter( (val) => parseInt(val) !== parseInt(expenseId)),},
     }));
 
     // Update Category totals to remove cost
@@ -122,7 +129,6 @@ function App() {
   };
 
   const editUser = (updateUser) => {
-      console.log(updateUser);
       setUsers( (prevUser) => ({
         ...prevUser,
         [updateUser.id] : {...updateUser, 
@@ -149,7 +155,7 @@ function App() {
       ...prevUsers,
       [originalUserId] : {...prevUsers[originalUserId], 
                         total: parseInt(originalInfo.total) - parseInt(originalExpenseInfo.cost),
-                        expenses: originalInfo.expenses.filter( (val) => val !== updateExpense.id),
+                        expenses: originalInfo.expenses.filter( (val) => parseInt(val) !== parseInt(updateExpense.id)),
                       }
       })
     });
@@ -179,15 +185,30 @@ function App() {
     }));
   };
 
-  useEffect( () => {console.log(users); console.log(expenses); console.log(categoryTotals)}, [expenses, users]);
-
   return (<>
+    <h1>User Management</h1>
+    <h3>Create New User</h3>
     <CreateUser onSubmit={addUser}/>
+    <br></br>
+    <h3>Edit User</h3>
     <EditUser onSubmit={editUser} users={users}/>
+    <br></br>
     <Users data={users} onDelete={deleteUser}/>
+    
+    <br></br><br></br>
+    
+    <h1>Expense Management</h1>
+    <h3>Create New Expense</h3>
     <CreateExpense onSubmit={addExpense} categories={CATEGORIES} users={users} />
+    <br></br>
+    <h3>Edit Expense</h3>
     <EditExpense onSubmit={editExpense} categories={CATEGORIES} users={users} expenses={expenses}/>
+    <br></br>
     <Expense data={expenses} users={users} categories={CATEGORIES} onDelete={deleteExpense} />
+    
+    <br></br><br></br>
+
+    <h1>Total Cost by Category</h1>
     <Category data={categoryTotals} categories={CATEGORIES}/>
   </>)
 }

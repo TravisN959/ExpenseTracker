@@ -1,5 +1,5 @@
 import { FixedSizeList as List } from 'react-window';
-import '../style/expenseTable.css';
+import '../style/tables.css';
 
 export default function Expense({data, users, categories, onDelete}){
 

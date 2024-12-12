@@ -6,7 +6,9 @@
   }
   
   .table-header,
-  .user-row {
+  .user-row,
+  .expense-row,
+  .cat-row {
     display: flex;
     padding: 0px;
     width: 100%;

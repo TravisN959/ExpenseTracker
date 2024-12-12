@@ -1,5 +1,5 @@
 import { FixedSizeList as List } from 'react-window';
-import '../style/categoryTable.css';
+import '../style/tables.css';
 
 export default function Category({data, categories}){
 
@@ -8,7 +8,7 @@ export default function Category({data, categories}){
         const categoryTotal = data[index];
 
         return (
-        <div style={style} className='expense-row'>
+        <div style={style} className='cat-row'>
             <div className='cell'>{categories[index]}</div>
             <div className='cell'>{categoryTotal}</div>
         </div>
