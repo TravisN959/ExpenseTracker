@@ -3,17 +3,14 @@ import '../style/categoryTable.css';
 
 export default function Category({data, categories}){
 
-    //Map to array for output, array of key,value
-    const entries = Object.values(data);
-
     //Create row from data
     const Row = ({ index, style }) => {
-        const category = entries[index];
+        const categoryTotal = data[index];
 
         return (
         <div style={style} className='expense-row'>
-            <div className='cell'>{categories[category.id]}</div>
-            <div className='cell'>{category.total}</div>
+            <div className='cell'>{categories[index]}</div>
+            <div className='cell'>{categoryTotal}</div>
         </div>
       )};
 
@@ -26,7 +23,7 @@ export default function Category({data, categories}){
         </div>
         <List
             height={400} // Height of the container
-            itemCount={entries.length} // Total number of users
+            itemCount={categories.length} // Total number of users
             itemSize={50} // Row height
             width='100%' // Width of the container
             >

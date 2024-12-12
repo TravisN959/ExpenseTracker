@@ -15,6 +15,7 @@
   .table-header {
     background-color: #731c1c;
     font-weight: bold;
+    
   }
   
   .cell{
@@ -25,8 +26,10 @@
 
   .header-cell {
     flex: 1;
-    text-align: left;
     padding: 4px;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
   }
   

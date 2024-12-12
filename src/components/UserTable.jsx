@@ -1,12 +1,12 @@
 import { FixedSizeList as List } from 'react-window';
 import '../style/userTable.css';
 
-export default function Users({data}){
+export default function Users({data, onDelete}){
 
-    //Map to array for output, array of key,value
+    //Get values from object
     const entries = Object.values(data);
 
-    // //Create row from data
+    //Create row from data
     const Row = ({ index, style }) => {
         const user = entries[index];
 
@@ -16,6 +16,11 @@ export default function Users({data}){
             <div className='cell'>{user.first}</div>
             <div className='cell'>{user.last}</div>
             <div className='cell'>{user.total}</div>
+            <div className='cell'>
+                <button onClick={() => onDelete(user.id)}>
+                    Delete
+                </button>
+            </div>
         </div>
       )};
 
@@ -27,6 +32,7 @@ export default function Users({data}){
             <div className='header-cell'>First Name</div>
             <div className='header-cell'>Last Name</div>
             <div className='header-cell'>Total Expenses</div>
+            <div className='header-cell'>Delete</div>
         </div>
         <List
             height={400} // Height of the container

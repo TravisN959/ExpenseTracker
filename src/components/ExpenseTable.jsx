@@ -1,22 +1,27 @@
 import { FixedSizeList as List } from 'react-window';
 import '../style/expenseTable.css';
 
-export default function Expense({data, users, categories}){
+export default function Expense({data, users, categories, onDelete}){
 
-    //Map to array for output, array of key,value
+    //Get values from object
     const entries = Object.values(data);
 
     //Create row from data
     const Row = ({ index, style }) => {
         const expense = entries[index];
-        const userData = users[expense.id];
+        const userData = users[expense.userId];
         return (
         <div style={style} className='expense-row'>
             <div className='cell'>{expense.id}</div>
             <div className='cell'>{categories[expense.category]}</div>
             <div className='cell'>{expense.description}</div>
             <div className='cell'>{expense.cost}</div>
-            <div className='cell'>{userData.first}</div>
+            <div className='cell'>{userData.first} {userData.last}</div>
+            <div className='cell'>
+                <button onClick={() => onDelete(expense.id)}>
+                    Delete
+                </button>
+            </div>
         </div>
       )};
 
@@ -29,6 +34,7 @@ export default function Expense({data, users, categories}){
             <div className='header-cell'>Description</div>
             <div className='header-cell'>Cost</div>
             <div className='header-cell'>User</div>
+            <div className='header-cell'>Delete</div>
         </div>
         <List
             height={400} // Height of the container
